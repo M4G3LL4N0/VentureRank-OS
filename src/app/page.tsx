@@ -14,7 +14,7 @@ export default function HomePage() {
     <main>
       <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-10 pt-16 md:pt-20">
         <div className="max-w-4xl">
-          <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-400/20 transition-colors">
+          <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-400/20 transition-colors hover:scale-[1.02] active:scale-95">
             Venture studio brain for knowledge-layer startups
           </div>
 
@@ -28,7 +28,7 @@ export default function HomePage() {
             legal navigation, city intelligence, and more.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4 animate-fade-in">
             <Link
               href="/dashboard"
               className="rounded-2xl bg-cyan-400 px-6 py-3 font-medium text-neutral-950 transition hover:opacity-90"
