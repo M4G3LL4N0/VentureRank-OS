@@ -12,23 +12,23 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="mx-auto max-w-7xl px-6 pb-10 pt-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-10 pt-16 md:pt-20">
         <div className="max-w-4xl">
-          <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
+          <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-400/20 transition-colors">
             Venture studio brain for knowledge-layer startups
           </div>
 
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Rank what matters. Spawn what wins. Build the best startup first.
+          <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Rank what matters.<br className="hidden sm:inline" /> Spawn what wins.<br className="hidden sm:inline" /> Build the best startup first.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg sm:leading-8">
             VentureRank OS is a scoring and spawning engine for next-generation
             Wikipedia-style startups: access systems, operator intelligence,
             legal navigation, city intelligence, and more.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
             <Link
               href="/dashboard"
               className="rounded-2xl bg-cyan-400 px-6 py-3 font-medium text-neutral-950 transition hover:opacity-90"
@@ -44,7 +44,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 sm:mt-14 grid gap-3 sm:gap-4 md:grid-cols-3">
           <KpiCard
             label="Ideas scored"
             value={String(ideas.length)}
@@ -63,22 +63,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-20">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-16 sm:pb-20">
+        <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div>
-            <div className="text-sm uppercase tracking-[0.2em] text-neutral-500">
+            <div className="text-xs sm:text-sm uppercase tracking-[0.2em] text-neutral-500">
               Top opportunities
             </div>
-            <h2 className="mt-2 text-3xl font-semibold text-white">
+            <h2 className="mt-2 text-2xl sm:text-3xl font-semibold text-white">
               Highest-ranked startups right now
             </h2>
           </div>
-          <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-300">
+          <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-neutral-300">
             {highPriority} additional high-priority opportunities
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
           {ideas.slice(0, 6).map((idea) => (
             <IdeaCard key={idea.slug} idea={idea} />
           ))}

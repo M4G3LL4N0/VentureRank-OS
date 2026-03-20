@@ -3,8 +3,33 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
-  title: "VentureRank OS",
+  title: {
+    template: "%s | VentureRank OS",
+    default: "VentureRank OS",
+  },
   description: "Rank startup opportunities and spawn the best ones first.",
+  metadataBase: new URL("https://venturerank.com"),
+  openGraph: {
+    title: "VentureRank OS",
+    description: "Rank startup opportunities and spawn the best ones first.",
+    url: "https://venturerank.com",
+    siteName: "VentureRank OS",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VentureRank OS",
+    description: "Rank startup opportunities and spawn the best ones first.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -13,10 +38,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="bg-neutral-950 text-white antialiased">
         <Navbar />
-        {children}
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );
