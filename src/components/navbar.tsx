@@ -6,6 +6,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/ideas", label: "Ideas" },
   { href: "/rankings", label: "Rankings" },
+  { href: "/admin/intake", label: "Admin" },
 ];
 
 export function Navbar() {
@@ -38,7 +39,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-neutral-200 hover:bg-white/[0.07] transition-colors">
+        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-neutral-200">
           <BarChart3 className="h-4 w-4 text-cyan-300" />
           Live ranking engine
           <Sparkles className="h-4 w-4 text-cyan-300" />
