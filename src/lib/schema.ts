@@ -17,6 +17,12 @@ export interface Idea {
   buildabilityScore: number;
   founderAdvantageScore: number;
   confidenceScore: number;
+  strategicLeverage: number;
+  regulatoryRisk: number;
+  buildSimplicity: number;
+  retentionPotential: number;
+  narrativePower: number;
+  expansionSurface: number;
   bucket: 'BUILD FIRST' | 'HIGH PRIORITY' | 'BACKLOG';
   rationale: string;
   risks: string[];
