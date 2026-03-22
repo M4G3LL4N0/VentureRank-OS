@@ -42,3 +42,12 @@ export type RankedIdea = Idea & {
   masterRankScore: number;
   confidenceAdjustedScore: number;
 };
+
+export type SpawnPack = {
+  productThesis: string;
+  icp: string[];
+  mvpFeatures: string[];
+  monetizationStrategy: string[];
+  gtmStrategy: string[];
+  expansionRoadmap: string[];
+};

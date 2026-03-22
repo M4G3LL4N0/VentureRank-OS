@@ -35,8 +35,26 @@ export default async function IdeaDetailPage({ params }: PageProps) {
     value: idea[key as keyof typeof idea],
   }));
 
+  const spawnPack = spawnPacks[slug] || {
+    productThesis: "",
+    icp: [],
+    mvpFeatures: [],
+    monetizationStrategy: [],
+    gtmStrategy: [],
+    expansionRoadmap: []
+  };
+
+  const summaryMetrics = [
+    { label: "Priority Score", value: idea.priorityScore },
+    { label: "Master Rank", value: idea.masterRankScore },
+    { label: "Adjusted Score", value: idea.confidenceAdjustedScore },
+    { label: "Urgency", value: idea.urgencyScore },
+    { label: "Buildability", value: idea.buildabilityScore },
+    { label: "Founder Fit", value: idea.founderAdvantageScore },
+  ];
+
   return (
-    <main className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
+    <main className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-12">
       <div className="max-w-4xl">
         <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">
           {idea.category}
@@ -62,7 +80,82 @@ export default async function IdeaDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+        <section className="space-y-6">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h2 className="text-xl font-semibold text-white">Key Metrics</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {summaryMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="rounded-2xl border border-white/10 bg-black/20 p-4"
+                >
+                  <div className="text-sm text-neutral-400">{metric.label}</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">
+                    {metric.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h2 className="text-xl font-semibold text-white">Spawn Pack Preview</h2>
+            <div className="mt-4 space-y-6">
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">Product Thesis</h3>
+                <p className="mt-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.productThesis}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">Ideal Customer Profile</h3>
+                <ul className="mt-2 space-y-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.icp.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">MVP Features</h3>
+                <ul className="mt-2 space-y-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.mvpFeatures.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">Monetization Strategy</h3>
+                <ul className="mt-2 space-y-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.monetizationStrategy.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">Go-to-Market Strategy</h3>
+                <ul className="mt-2 space-y-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.gtmStrategy.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium text-neutral-400">Expansion Roadmap</h3>
+                <ul className="mt-2 space-y-2 text-sm leading-7 text-neutral-300">
+                  {spawnPack.expansionRoadmap.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
           <h2 className="text-2xl font-semibold text-white">Score breakdown</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-2">

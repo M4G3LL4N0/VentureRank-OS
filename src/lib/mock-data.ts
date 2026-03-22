@@ -220,4 +220,62 @@ const rawIdeas: Idea[] = [
   },
 ];
 
+const spawnPacks: Record<string, SpawnPack> = {
+  "access-wiki": {
+    productThesis: "Build the structured access layer for physical and digital spaces",
+    icp: ["Building operators", "Venue managers", "Smart city planners"],
+    mvpFeatures: [
+      "Access rule templates",
+      "Permission layer builder",
+      "Tokenized entry logic",
+      "Spatial coordination tools"
+    ],
+    monetizationStrategy: [
+      "SaaS subscriptions",
+      "API access fees",
+      "Enterprise licensing",
+      "Integration partnerships"
+    ],
+    gtmStrategy: [
+      "Target high-density urban areas first",
+      "Partner with smart building operators",
+      "Develop case studies with early adopters"
+    ],
+    expansionRoadmap: [
+      "Add digital space permissions",
+      "Integrate with IoT systems",
+      "Develop API ecosystem",
+      "Expand to international markets"
+    ]
+  },
+  "operator-wiki": {
+    productThesis: "Create the definitive playbook for real-world operations",
+    icp: ["Small business owners", "Operations managers", "General contractors"],
+    mvpFeatures: [
+      "Cost estimation tools",
+      "Project timeline builder",
+      "Inspection checklists",
+      "Operational playbooks"
+    ],
+    monetizationStrategy: [
+      "Freemium SaaS model",
+      "Premium templates",
+      "Consulting services",
+      "Enterprise licensing"
+    ],
+    gtmStrategy: [
+      "Focus on high-growth industries",
+      "Develop vertical-specific content",
+      "Leverage partnerships with trade associations"
+    ],
+    expansionRoadmap: [
+      "Add AI-powered recommendations",
+      "Expand to international markets",
+      "Develop mobile-first tools",
+      "Create certification programs"
+    ]
+  }
+};
+];
+
 export const ideas: RankedIdea[] = sortIdeasByRank(rawIdeas);
