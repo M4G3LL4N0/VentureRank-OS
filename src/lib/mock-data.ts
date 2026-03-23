@@ -33,10 +33,10 @@ const rawIdeas: Idea[] = [
     risks: [
       "Data collection is harder early on",
       "Category education may be required",
-      "MVP scope can expand too quickly",
+      "MVP scope can expand too quickly"
     ],
     recommendedAction:
-      "Build a focused MVP around access logic, permission layers, and structured venue or building rules.",
+      "Build a focused MVP around access logic, permission layers, and structured venue or building rules."
   },
   {
     title: "Operator Wiki",
@@ -69,10 +69,10 @@ const rawIdeas: Idea[] = [
     risks: [
       "Can look niche if positioned too narrowly",
       "Need clean taxonomy for structured knowledge",
-      "Must avoid turning into generic blog content",
+      "Must avoid turning into generic blog content"
     ],
     recommendedAction:
-      "Build first as a fast cash-flow and authority product while Access Wiki develops as the deeper platform layer.",
+      "Build first as a fast cash-flow and authority product while Access Wiki develops as the deeper platform layer."
   },
   {
     title: "Legal Navigation Wiki",
@@ -105,10 +105,10 @@ const rawIdeas: Idea[] = [
     risks: [
       "Accuracy burden is high",
       "Legal sensitivity can slow expansion",
-      "May need careful disclaimers and review flows",
+      "May need careful disclaimers and review flows"
     ],
     recommendedAction:
-      "Generate build pack now, but position as navigation and procedural intelligence rather than legal advice.",
+      "Generate build pack now, but position as navigation and procedural intelligence rather than legal advice."
   },
   {
     title: "City Intelligence Wiki",
@@ -141,10 +141,10 @@ const rawIdeas: Idea[] = [
     risks: [
       "Can become noisy fast",
       "Needs a narrow wedge to win",
-      "Many fragmented substitutes exist",
+      "Many fragmented substitutes exist"
     ],
     recommendedAction:
-      "Keep in the high-priority queue and test with one city and one wedge before broad expansion.",
+      "Keep in the high-priority queue and test with one city and one wedge before broad expansion."
   },
   {
     title: "Skill Graph Wiki",
@@ -177,10 +177,10 @@ const rawIdeas: Idea[] = [
     risks: [
       "Crowded market",
       "Must prove differentiation fast",
-      "Could drift into generic education tooling",
+      "Could drift into generic education tooling"
     ],
     recommendedAction:
-      "Backlog unless paired with a sharper industry-specific wedge.",
+      "Backlog unless paired with a sharper industry-specific wedge."
   },
   {
     title: "Experience Wiki",
@@ -213,69 +213,11 @@ const rawIdeas: Idea[] = [
     risks: [
       "Data quality and consistency can vary",
       "Monetization less direct",
-      "May resemble review platforms unless differentiated clearly",
+      "May resemble review platforms unless differentiated clearly"
     ],
     recommendedAction:
-      "Backlog or bundle later into a broader city or lifestyle intelligence system.",
-  },
-];
-
-const spawnPacks: Record<string, SpawnPack> = {
-  "access-wiki": {
-    productThesis: "Build the structured access layer for physical and digital spaces",
-    icp: ["Building operators", "Venue managers", "Smart city planners"],
-    mvpFeatures: [
-      "Access rule templates",
-      "Permission layer builder",
-      "Tokenized entry logic",
-      "Spatial coordination tools"
-    ],
-    monetizationStrategy: [
-      "SaaS subscriptions",
-      "API access fees",
-      "Enterprise licensing",
-      "Integration partnerships"
-    ],
-    gtmStrategy: [
-      "Target high-density urban areas first",
-      "Partner with smart building operators",
-      "Develop case studies with early adopters"
-    ],
-    expansionRoadmap: [
-      "Add digital space permissions",
-      "Integrate with IoT systems",
-      "Develop API ecosystem",
-      "Expand to international markets"
-    ]
-  },
-  "operator-wiki": {
-    productThesis: "Create the definitive playbook for real-world operations",
-    icp: ["Small business owners", "Operations managers", "General contractors"],
-    mvpFeatures: [
-      "Cost estimation tools",
-      "Project timeline builder",
-      "Inspection checklists",
-      "Operational playbooks"
-    ],
-    monetizationStrategy: [
-      "Freemium SaaS model",
-      "Premium templates",
-      "Consulting services",
-      "Enterprise licensing"
-    ],
-    gtmStrategy: [
-      "Focus on high-growth industries",
-      "Develop vertical-specific content",
-      "Leverage partnerships with trade associations"
-    ],
-    expansionRoadmap: [
-      "Add AI-powered recommendations",
-      "Expand to international markets",
-      "Develop mobile-first tools",
-      "Create certification programs"
-    ]
+      "Backlog or bundle later into a broader city or lifestyle intelligence system."
   }
-};
 ];
 
 export const ideas: RankedIdea[] = sortIdeasByRank(rawIdeas);
