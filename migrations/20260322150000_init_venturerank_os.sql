@@ -1,11 +1,9 @@
--- Create dedicated schema
+-- Create schema and extension safely
 CREATE SCHEMA IF NOT EXISTS venturerank_os;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- Enable RLS extension
-CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA venturerank_os;
-
--- Ideas table
-CREATE TABLE venturerank_os.ideas (
+-- Ideas table with all required constraints
+CREATE TABLE IF NOT EXISTS venturerank_os.ideas (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
@@ -30,9 +28,9 @@ CREATE TABLE venturerank_os.ideas (
     retention_potential SMALLINT NOT NULL CHECK (retention_potential BETWEEN 0 AND 10),
     narrative_power SMALLINT NOT NULL CHECK (narrative_power BETWEEN 0 AND 10),
     expansion_surface SMALLINT NOT NULL CHECK (expansion_surface BETWEEN 0 AND 10),
-    bucket TEXT NOT NULL CHECK (bucket IN ('BUILD FIRST', 'HIGH PRIORITY', 'BACKLOG')),
+    bucket TEXT NOT NULL CHECK (bucket IN ('BUILD FIRST', 'HIGH PRIORITY', 'BACKLOG', 'IGNORE / MERGE')),
     rationale TEXT NOT NULL,
-    risks JSONB NOT NULL DEFAULT '[]'::jsonb,
+    risks JSONB NOT NULL DEFAULT '[]'::jsonb CHECK (jsonb_typeof(risks) = 'array'),
     recommended_action TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -42,8 +40,12 @@ CREATE TABLE venturerank_os.ideas (
 CREATE INDEX idx_ideas_bucket ON venturerank_os.ideas(bucket);
 CREATE INDEX idx_ideas_category ON venturerank_os.ideas(category);
 
--- Update timestamp trigger
-CREATE OR REPLACE FUNCTION venturerank_os.update_timestamp()
+-- Drop existing trigger and function if they exist
+DROP TRIGGER IF EXISTS update_ideas_timestamp ON venturerank_os.ideas;
+DROP FUNCTION IF EXISTS venturerank_os.set_updated_at();
+
+-- Create timestamp update function
+CREATE OR REPLACE FUNCTION venturerank_os.set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
     NEW.updated_at = NOW();
@@ -51,23 +53,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Create updated_at trigger
 CREATE TRIGGER update_ideas_timestamp
 BEFORE UPDATE ON venturerank_os.ideas
 FOR EACH ROW
-EXECUTE FUNCTION venturerank_os.update_timestamp();
+EXECUTE FUNCTION venturerank_os.set_updated_at();
 
--- Enable RLS
+-- Enable RLS and set policies
 ALTER TABLE venturerank_os.ideas ENABLE ROW LEVEL SECURITY;
 
--- Policies
--- Allow authenticated users to read all ideas
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS ideas_select_policy ON venturerank_os.ideas;
+
+-- Create read policy for authenticated users
 CREATE POLICY ideas_select_policy ON venturerank_os.ideas
 FOR SELECT
 TO authenticated
-USING (true);
-
--- Only service role can modify data
-CREATE POLICY ideas_modify_policy ON venturerank_os.ideas
-FOR ALL
-TO service_role
 USING (true);
