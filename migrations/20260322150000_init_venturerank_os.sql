@@ -48,7 +48,7 @@ DROP FUNCTION IF EXISTS venturerank_os.set_updated_at();
 CREATE OR REPLACE FUNCTION venturerank_os.set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.updated_at = public.now();
+    NEW.updated_at = NOW();
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
