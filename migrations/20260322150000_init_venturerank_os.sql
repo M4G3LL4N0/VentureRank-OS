@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- Ideas table with all required constraints
 CREATE TABLE IF NOT EXISTS venturerank_os.ideas (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID PRIMARY KEY DEFAULT public.gen_random_uuid(),
     title TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
     category TEXT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS venturerank_os.ideas (
     expansion_surface SMALLINT NOT NULL CHECK (expansion_surface BETWEEN 0 AND 10),
     bucket TEXT NOT NULL CHECK (bucket IN ('BUILD FIRST', 'HIGH PRIORITY', 'BACKLOG', 'IGNORE / MERGE')),
     rationale TEXT NOT NULL,
-    risks JSONB NOT NULL DEFAULT '[]'::jsonb CHECK (jsonb_typeof(risks) = 'array'),
+    risks JSONB NOT NULL DEFAULT '[]'::jsonb CHECK (public.jsonb_typeof(risks) = 'array'),
     recommended_action TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -48,7 +48,7 @@ DROP FUNCTION IF EXISTS venturerank_os.set_updated_at();
 CREATE OR REPLACE FUNCTION venturerank_os.set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.updated_at = NOW();
+    NEW.updated_at = public.now();
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -68,5 +68,5 @@ DROP POLICY IF EXISTS ideas_select_policy ON venturerank_os.ideas;
 -- Create read policy for authenticated users
 CREATE POLICY ideas_select_policy ON venturerank_os.ideas
 FOR SELECT
-TO authenticated
+TO public.authenticated
 USING (true);
