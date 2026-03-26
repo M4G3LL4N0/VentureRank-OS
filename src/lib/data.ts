@@ -3,11 +3,17 @@ import { ideas as mockIdeas } from "@/lib/mock-data";
 import { mapIdeaRowToRankedIdea } from "@/lib/mappers";
 import { RankedIdeaView, VentureIdeaRow, SpawnPack } from "@/lib/phase3-types";
 
-export async function fetchIdeas(): Promise<RankedIdeaView[]> {
-  const { data, error } = await supabase
+export async function fetchIdeas(opts?: { status?: IdeaStatus }): Promise<RankedIdeaView[]> {
+  let query = supabase
     .from("ideas")
     .select("*")
     .order("created_at", { ascending: false });
+
+  if (opts?.status) {
+    query = query.eq("status", opts.status);
+  }
+
+  const { data, error } = await query;
 
   if (error || !data || data.length === 0) {
     return mockIdeas;

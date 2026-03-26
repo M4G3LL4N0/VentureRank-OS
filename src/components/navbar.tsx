@@ -40,11 +40,17 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-neutral-200">
-          <BriefcaseBusiness className="h-4 w-4 text-cyan-300" />
-          Portfolio live
-          <BarChart3 className="h-4 w-4 text-cyan-300" />
-          <Sparkles className="h-4 w-4 text-cyan-300" />
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-neutral-200">
+            <BriefcaseBusiness className="h-4 w-4 text-cyan-300" />
+            Portfolio live
+            <BarChart3 className="h-4 w-4 text-cyan-300" />
+            <Sparkles className="h-4 w-4 text-cyan-300" />
+          </div>
+          <div className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-neutral-200">
+            <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Operational</span>
+          </div>
         </div>
       </div>
     </header>

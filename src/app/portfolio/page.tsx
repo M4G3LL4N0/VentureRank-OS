@@ -2,7 +2,7 @@ import Link from "next/link";
 import { fetchIdeas } from "@/lib/data";
 
 export default async function PortfolioPage() {
-  const ideas = await fetchIdeas();
+  const ideas = await fetchIdeas({ status: 'active' });
 
   const buildFirst = ideas.filter((idea) => idea.bucket === "BUILD FIRST");
   const highPriority = ideas.filter((idea) => idea.bucket === "HIGH PRIORITY");
