@@ -2,11 +2,12 @@ import Link from "next/link";
 import { fetchIdeas } from "@/lib/data";
 
 export default async function PortfolioPage() {
-  const ideas = await fetchIdeas({ status: 'active' });
+  const ideas = await fetchIdeas();
 
   const buildFirst = ideas.filter((idea) => idea.bucket === "BUILD FIRST");
   const highPriority = ideas.filter((idea) => idea.bucket === "HIGH PRIORITY");
   const backlog = ideas.filter((idea) => idea.bucket === "BACKLOG");
+  const ignoreOrMerge = ideas.filter((idea) => idea.bucket === "IGNORE / MERGE");
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
@@ -23,7 +24,7 @@ export default async function PortfolioPage() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 xl:grid-cols-4">
         <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
           <h2 className="text-xl font-semibold text-white">Build First</h2>
           <div className="mt-4 space-y-4">
@@ -66,6 +67,25 @@ export default async function PortfolioPage() {
           <h2 className="text-xl font-semibold text-white">Backlog</h2>
           <div className="mt-4 space-y-4">
             {backlog.map((idea) => (
+              <Link
+                key={idea.slug}
+                href={`/ideas/${idea.slug}`}
+                className="block rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-cyan-400/30"
+              >
+                <div className="text-sm text-cyan-300">{idea.category}</div>
+                <div className="mt-1 font-medium text-white">{idea.title}</div>
+                <div className="mt-2 text-sm text-neutral-400">
+                  Adjusted {idea.confidenceAdjustedScore}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 className="text-xl font-semibold text-white">Ignore / Merge</h2>
+          <div className="mt-4 space-y-4">
+            {ignoreOrMerge.map((idea) => (
               <Link
                 key={idea.slug}
                 href={`/ideas/${idea.slug}`}

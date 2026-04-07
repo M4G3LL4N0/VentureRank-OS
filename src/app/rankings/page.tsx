@@ -9,22 +9,21 @@ export default function RankingsPage() {
           Rankings
         </div>
         <h1 className="mt-3 text-4xl font-semibold text-white">
-          Confidence-adjusted startup rankings
+          Investor-grade opportunity rankings
         </h1>
         <p className="mt-4 text-lg leading-8 text-neutral-300">
-          Opportunities are ranked using weighted startup criteria and then
-          adjusted by confidence to avoid overvaluing weak assumptions.
+          Opportunities are scored across 20+ weighted criteria and adjusted for confidence to surface the strongest execution candidates.
         </p>
       </div>
 
       <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/5">
         <div className="grid grid-cols-[60px_1.5fr_1fr_120px_120px_140px] gap-4 border-b border-white/10 px-6 py-4 text-sm text-neutral-400">
-          <div>Rank</div>
-          <div>Idea</div>
-          <div>Category</div>
-          <div>Priority</div>
-          <div>Master</div>
-          <div>Adjusted</div>
+          <div className="font-medium">Rank</div>
+          <div className="font-medium">Opportunity</div>
+          <div className="font-medium">Category</div>
+          <div className="font-medium" title="Weighted across pain, market, monetization">Priority</div>
+          <div className="font-medium" title="Includes urgency, buildability, founder fit">Master</div>
+          <div className="font-medium text-cyan-300" title="Confidence-adjusted final score">Adjusted</div>
         </div>
 
         {ideas.map((idea, index) => (

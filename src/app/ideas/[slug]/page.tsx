@@ -25,37 +25,38 @@ const metricLabels: Record<string, string> = {
 
 function buildSpawnPack(idea: (typeof ideas)[number]) {
   return {
-    productThesis: `${idea.title} is a ${idea.category.toLowerCase()} product designed to turn fragmented knowledge into structured, ranked, decision-ready intelligence.`,
+    productThesis: `${idea.title} is an AI-powered ${idea.category.toLowerCase()} platform that transforms fragmented knowledge into ranked, structured venture opportunities with clear execution paths and investor-grade scoring.`,
     icp: [
-      "Founders evaluating new venture opportunities",
-      "Operators who need a repeatable decision framework",
-      "Investors or strategic builders prioritizing what to build next",
+      "Seed-stage founders evaluating what to build next",
+      "Emerging venture studios prioritizing their pipelines",
+      "Angel investors and micro-funds sourcing deal flow",
+      "Operators building repeatable venture frameworks",
     ],
     mvpFeatures: [
-      "Ranked idea dashboard",
-      "Detailed scoring breakdown by opportunity",
-      "Confidence-adjusted startup ranking",
-      "Decision buckets for build timing",
-      "Structured rationale, risks, and recommended action",
+      "AI-powered idea intake and structured scoring",
+      "Investor-grade opportunity ranking system",
+      "Confidence-adjusted prioritization engine",
+      "Automated spawn pack generation",
+      "Portfolio-level execution tracking",
     ],
     monetizationStrategy: [
-      "Paid founder subscriptions",
-      "Team and investor workspace plans",
-      "Premium AI-generated build packs",
-      "Enterprise strategy dashboards",
+      "Founder subscription plans ($99/mo)",
+      "Venture studio workspace pricing ($499/mo)",
+      "Premium AI-generated venture packs ($299/pack)",
+      "Enterprise API access ($999/mo)",
     ],
     gtmStrategy: [
-      "Launch as an internal founder operating system",
-      "Publish ranked opportunity writeups to attract builders and investors",
-      "Convert traffic into premium build-pack users",
-      "Expand into venture studio and portfolio tooling",
+      "Launch as internal venture studio OS",
+      "Publish ranked opportunities to attract builders",
+      "Convert traffic through premium scoring workflows",
+      "Expand into full-stack venture operations",
     ],
     expansionRoadmap: [
-      "Add admin idea intake",
-      "Connect Supabase persistence",
-      "Add AI-generated scoring and rationale",
-      "Add automated spawn packs and export flows",
-      "Support multi-user workspaces and portfolio-level analytics",
+      "Add portfolio management tools",
+      "Integrate deal flow pipelines",
+      "Launch API for rankings and scoring",
+      "Add collaborative workspace features",
+      "Expand into full venture studio operations",
     ],
   };
 }
@@ -113,16 +114,27 @@ export default async function IdeaDetailPage({ params }: PageProps) {
       <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
         <section className="space-y-6">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <h2 className="text-2xl font-semibold text-white">Score breakdown</h2>
+            <h2 className="text-2xl font-semibold text-white">Investor-grade scoring</h2>
             <div className="mt-6 grid gap-3 md:grid-cols-2">
               {metrics.map((metric) => (
                 <div
                   key={metric.key}
                   className="rounded-2xl border border-white/10 bg-black/20 p-4"
                 >
-                  <div className="text-sm text-neutral-400">{metric.label}</div>
+                  <div className="text-sm text-neutral-400">
+                    {metric.label}
+                    {metric.key === 'painSeverity' && (
+                      <span className="ml-1 text-xs text-neutral-500">(1-10 pain scale)</span>
+                    )}
+                    {metric.key === 'marketSize' && (
+                      <span className="ml-1 text-xs text-neutral-500">($M TAM)</span>
+                    )}
+                  </div>
                   <div className="mt-2 text-2xl font-semibold text-white">
                     {String(metric.value)}
+                    {metric.key === 'marketSize' && (
+                      <span className="ml-1 text-sm font-normal text-neutral-400">M</span>
+                    )}
                   </div>
                 </div>
               ))}
@@ -130,7 +142,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <h2 className="text-2xl font-semibold text-white">Spawn pack preview</h2>
+            <h2 className="text-2xl font-semibold text-white">Execution blueprint</h2>
 
             <div className="mt-6 space-y-6">
               <div>

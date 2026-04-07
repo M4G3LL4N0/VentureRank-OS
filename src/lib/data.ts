@@ -1,22 +1,39 @@
-import { supabase } from "@/lib/supabase";
 import { ideas as mockIdeas } from "@/lib/mock-data";
 import { mapIdeaRowToRankedIdea } from "@/lib/mappers";
 import { RankedIdeaView, VentureIdeaRow, SpawnPack } from "@/lib/phase3-types";
+import { getSupabaseClient } from "@/lib/supabase";
 
-export async function fetchIdeas(opts?: { status?: IdeaStatus }): Promise<RankedIdeaView[]> {
-  let query = supabase
-    .from("ideas")
+type IdeaBucket = RankedIdeaView["bucket"];
+
+export async function fetchIdeas(opts?: { status?: IdeaBucket }): Promise<RankedIdeaView[]> {
+  const supabase = getSupabaseClient();
+
+  if (!supabase) {
+    const fallback = [...mockIdeas];
+    if (opts?.status) {
+      return fallback.filter((idea) => idea.bucket === opts.status);
+    }
+    return fallback;
+  }
+
+  let query = ((supabase as any).schema("venturerank_os").from("ideas") as any)
     .select("*")
     .order("created_at", { ascending: false });
 
   if (opts?.status) {
-    query = query.eq("status", opts.status);
+    query = query.eq("bucket", opts.status);
   }
 
   const { data, error } = await query;
 
   if (error || !data || data.length === 0) {
-    return mockIdeas;
+    const fallback = [...mockIdeas];
+
+    if (opts?.status) {
+      return fallback.filter((idea) => idea.bucket === opts.status);
+    }
+
+    return fallback;
   }
 
   return (data as VentureIdeaRow[])
@@ -25,15 +42,21 @@ export async function fetchIdeas(opts?: { status?: IdeaStatus }): Promise<Ranked
 }
 
 export async function fetchIdeaBySlug(slug: string): Promise<RankedIdeaView | null> {
-  const { data, error } = await supabase
-    .from("ideas")
+  const supabase = getSupabaseClient();
+
+  if (!supabase) {
+    return mockIdeas.find((idea) => idea.slug === slug) ?? null;
+  }
+
+  const { data, error } = await ((supabase as any)
+    .schema("venturerank_os")
+    .from("ideas") as any)
     .select("*")
     .eq("slug", slug)
     .maybeSingle();
 
   if (error || !data) {
-    const fallback = mockIdeas.find((idea) => idea.slug === slug);
-    return fallback ?? null;
+    return mockIdeas.find((idea) => idea.slug === slug) ?? null;
   }
 
   return mapIdeaRowToRankedIdea(data as VentureIdeaRow);
@@ -41,7 +64,7 @@ export async function fetchIdeaBySlug(slug: string): Promise<RankedIdeaView | nu
 
 export function buildSpawnPack(idea: RankedIdeaView): SpawnPack {
   return {
-    productThesis: `${idea.title} is a ${idea.category.toLowerCase()} platform that transforms fragmented information into a structured decision system with scoring, prioritization, and execution intelligence.`,
+    productThesis: `${idea.title} is an institutional-grade ${idea.category.toLowerCase()} platform that transforms fragmented venture signals into ranked, structured opportunities with clear execution paths and investor-grade scoring. The system combines AI-powered analysis with structured venture frameworks to surface the highest-conviction build candidates.`,
     icp: [
       "Founders evaluating what to build next",
       "Operators who need structured opportunity triage",

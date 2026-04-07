@@ -24,13 +24,22 @@ export function IdeaCard({ idea }: { idea: RankedIdea }) {
         <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-200">
           {idea.bucket}
         </span>
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
+        <span 
+          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300"
+          title={`Pain (${idea.painSeverity}) × Market (${idea.marketSize}) × Monetization (${idea.monetizationClarity})`}
+        >
           Priority {idea.priorityScore}
         </span>
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
+        <span 
+          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300"
+          title={`Urgency (${idea.urgencyScore}) × Build (${idea.buildabilityScore}) × Fit (${idea.founderAdvantageScore})`}
+        >
           Rank {idea.masterRankScore}
         </span>
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
+        <span 
+          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-cyan-200"
+          title={`Confidence: ${idea.confidenceScore}/10`}
+        >
           Adjusted {idea.confidenceAdjustedScore}
         </span>
       </div>

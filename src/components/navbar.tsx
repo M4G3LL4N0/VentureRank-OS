@@ -23,7 +23,7 @@ export function Navbar() {
               VentureRank OS
             </div>
             <div className="text-xs text-neutral-400">
-              Rank. Spawn. Build.
+              The Venture Operating System
             </div>
           </div>
         </Link>

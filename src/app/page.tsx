@@ -15,17 +15,15 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-10 pt-16 md:pt-20">
         <div className="max-w-4xl">
           <div className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-400/20 transition-colors hover:scale-[1.02] active:scale-95">
-            Venture studio brain for knowledge-layer startups
+            Investor-grade venture prioritization engine
           </div>
 
           <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Rank what matters.<br className="hidden sm:inline" /> Spawn what wins.<br className="hidden sm:inline" /> Build the best startup first.
+            Rank smarter.<br className="hidden sm:inline" /> Build faster.<br className="hidden sm:inline" /> Win bigger.
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg sm:leading-8">
-            VentureRank OS is a scoring and spawning engine for next-generation
-            Wikipedia-style startups: access systems, operator intelligence,
-            legal navigation, city intelligence, and more.
+            VentureRank OS is the operating system for venture creation. We combine AI-powered scoring with structured execution frameworks to help founders, studios, and investors build smarter, faster, and with greater conviction.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 sm:gap-4 animate-fade-in">

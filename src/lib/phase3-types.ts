@@ -40,15 +40,12 @@ export type SpawnPack = {
   expansionRoadmap: string[];
 };
 
-export type IdeaStatus = 'active' | 'paused' | 'archived';
-
 export type RankedIdeaView = {
   id?: string;
   title: string;
   slug: string;
   category: string;
   description: string;
-  status: IdeaStatus;
   painSeverity: number;
   frequency: number;
   marketSize: number;

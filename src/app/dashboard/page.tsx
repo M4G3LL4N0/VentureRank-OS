@@ -25,14 +25,14 @@ export default function DashboardPage() {
 
       <div className="mt-10 grid gap-4 md:grid-cols-4">
         <KpiCard
-          label="Top ranked"
+          label="Top conviction"
           value={top.title}
-          subtext={`Adjusted score ${top.confidenceAdjustedScore}`}
+          subtext={`Score: ${top.confidenceAdjustedScore} (${top.confidenceScore}/10 confidence)`}
         />
         <KpiCard
-          label="Second ranked"
+          label="Runner-up"
           value={second.title}
-          subtext={`Adjusted score ${second.confidenceAdjustedScore}`}
+          subtext={`Score: ${second.confidenceAdjustedScore} (${second.confidenceScore}/10 confidence)`}
         />
         <KpiCard
           label="Build first"
