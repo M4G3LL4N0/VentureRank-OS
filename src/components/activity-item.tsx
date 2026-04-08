@@ -1,15 +1,20 @@
 import { ClockIcon, ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
 import { format } from "date-fns";
-import type { RankedIdea } from "@/lib/schema";
+import type { RankedIdea } from "@/lib/types";
 
 type Props = {
   idea: RankedIdea;
-  change?: "up" | "down";
-  amount?: number;
-  date?: Date;
+  change: "up" | "down";
+  amount: number;
+  date: Date;
 };
 
-export function ActivityItem({ idea, change, amount, date }: Props) {
+export function ActivityItem({
+  idea,
+  change = "up", 
+  amount,
+  date
+}: Props) {
   return (
     <div className="flex items-start gap-3 rounded-lg border border-white/5 p-4 hover:bg-white/5 transition-colors">
       <div className="flex-shrink-0 rounded-full bg-white/5 p-2">
