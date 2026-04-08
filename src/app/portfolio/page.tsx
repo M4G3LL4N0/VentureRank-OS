@@ -1,13 +1,41 @@
 import Link from "next/link";
 import { fetchIdeas } from "@/lib/data";
 
-export default async function PortfolioPage() {
-  const ideas = await fetchIdeas();
+import { Suspense } from "react";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
-  const buildFirst = ideas.filter((idea) => idea.bucket === "BUILD FIRST");
-  const highPriority = ideas.filter((idea) => idea.bucket === "HIGH PRIORITY");
-  const backlog = ideas.filter((idea) => idea.bucket === "BACKLOG");
-  const ignoreOrMerge = ideas.filter((idea) => idea.bucket === "IGNORE / MERGE");
+export default async function PortfolioPage() {
+  const ideas = await fetchIdeas() || [];
+  
+  // Ensure idea.bucket is always defined and matches expected types
+  type IdeaBucket = 'BUILD FIRST' | 'HIGH PRIORITY' | 'BACKLOG' | 'IGNORE / MERGE';
+  const isValidBucket = (bucket: string): bucket is IdeaBucket => {
+    return ['BUILD FIRST', 'HIGH PRIORITY', 'BACKLOG', 'IGNORE / MERGE'].includes(bucket);
+  };
+  
+  if (!ideas.length) {
+    return (
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid gap-6 xl:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="rounded-3xl border border-white/10 bg-white/5 p-6">
+              <div className="h-8 w-32 mb-4 bg-gray-700 rounded" />
+              <div className="space-y-4">
+                {[...Array(3)].map((_, j) => (
+                  <div key={j} className="h-24 w-full rounded-2xl bg-gray-700" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const buildFirst = ideas.filter((idea) => isValidBucket(idea.bucket) && idea.bucket === "BUILD FIRST");
+  const highPriority = ideas.filter((idea) => isValidBucket(idea.bucket) && idea.bucket === "HIGH PRIORITY");
+  const backlog = ideas.filter((idea) => isValidBucket(idea.bucket) && idea.bucket === "BACKLOG");
+  const ignoreOrMerge = ideas.filter((idea) => isValidBucket(idea.bucket) && idea.bucket === "IGNORE / MERGE");
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">

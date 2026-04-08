@@ -23,7 +23,7 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-4">
+      <div className="mt-10 grid gap-4 grid-cols-2 md:grid-cols-4">
         <KpiCard
           label="Top conviction"
           value={top.title}

@@ -67,11 +67,13 @@ export default async function IdeaDetailPage({ params }: PageProps) {
 
   if (!idea) return notFound();
 
-  const metrics = Object.entries(metricLabels).map(([key, label]) => ({
-    key,
-    label,
-    value: idea[key as keyof typeof idea],
-  }));
+  const metrics = Object.entries(metricLabels)
+    .map(([key, label]) => ({
+      key,
+      label,
+      value: idea[key as keyof typeof idea],
+    }))
+    .filter(metric => typeof metric.value === 'number');
 
   const spawnPack = buildSpawnPack(idea);
 

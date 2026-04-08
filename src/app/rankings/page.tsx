@@ -30,7 +30,7 @@ export default function RankingsPage() {
           <Link
             key={idea.slug}
             href={`/ideas/${idea.slug}`}
-            className="grid grid-cols-[60px_1.5fr_1fr_120px_120px_140px] gap-4 border-b border-white/10 px-6 py-5 text-sm transition hover:bg-white/[0.04]"
+            className="grid grid-cols-[60px_1.5fr_1fr_120px_120px_140px] gap-4 border-b border-white/10 px-6 py-5 text-sm transition hover:bg-white/[0.04] hover:scale-[1.005]"
           >
             <div className="font-medium text-white">#{index + 1}</div>
             <div>
