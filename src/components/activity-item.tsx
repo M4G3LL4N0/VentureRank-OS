@@ -30,7 +30,7 @@ export function ActivityItem({ idea, change, amount, date }: Props) {
         </p>
       </div>
       <div className="text-sm font-medium text-white">
-        #{idea?.masterRankScore?.toFixed(0) ?? 'N/A'}
+        #{(idea as RankedIdea)?.masterRankScore?.toFixed(0) ?? 'N/A'}
       </div>
     </div>
   );
