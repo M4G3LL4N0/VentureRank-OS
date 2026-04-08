@@ -3,6 +3,8 @@ import { KpiCard } from "@/components/kpi-card";
 import { IdeaCard } from "@/components/idea-card";
 import { ActivityItem } from "@/components/activity-item";
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const top = ideas[0];
   const second = ideas[1];

@@ -3,7 +3,24 @@ import { ideas } from "@/lib/mock-data";
 import { KpiCard } from "@/components/kpi-card";
 import { IdeaCard } from "@/components/idea-card";
 
-export default function HomePage() {
+import { unstable_cache } from 'next/cache';
+
+const getCachedData = unstable_cache(
+  async () => {
+    const buildFirst = ideas.filter((idea) => idea.bucket === "BUILD FIRST").length;
+    const highPriority = ideas.filter((idea) => idea.bucket === "HIGH PRIORITY").length;
+    const avgScore = (
+      ideas.reduce((sum, idea) => sum + idea.confidenceAdjustedScore, 0) / ideas.length
+    ).toFixed(1);
+    
+    return { buildFirst, highPriority, avgScore };
+  },
+  ['home-page-metrics'],
+  { revalidate: 3600 } // 1 hour
+);
+
+export default async function HomePage() {
+  const { buildFirst, highPriority, avgScore } = await getCachedData();
   const buildFirst = ideas.filter((idea) => idea.bucket === "BUILD FIRST").length;
   const highPriority = ideas.filter((idea) => idea.bucket === "HIGH PRIORITY").length;
   const avgScore = (
