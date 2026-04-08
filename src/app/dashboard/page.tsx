@@ -1,6 +1,7 @@
 import { ideas } from "@/lib/mock-data";
 import { KpiCard } from "@/components/kpi-card";
 import { IdeaCard } from "@/components/idea-card";
+import { ActivityItem } from "@/components/activity-item";
 
 export default function DashboardPage() {
   const top = ideas[0];
@@ -46,10 +47,38 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="mt-12 grid gap-4 lg:grid-cols-2">
-        {ideas.slice(0, 4).map((idea) => (
-          <IdeaCard key={idea.slug} idea={idea} />
-        ))}
+      <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="space-y-4">
+          {ideas.slice(0, 4).map((idea) => (
+            <IdeaCard key={idea.slug} idea={idea} />
+          ))}
+        </div>
+
+        <div className="space-y-6">
+          <div className="text-sm uppercase tracking-[0.2em] text-neutral-500">
+            Recent Activity
+          </div>
+          <div className="space-y-3">
+            <ActivityItem
+              idea={ideas[1]}
+              change="up"
+              amount={2}
+              date={new Date()}
+            />
+            <ActivityItem
+              idea={ideas[3]}
+              change="down"
+              amount={1}
+              date={new Date(Date.now() - 86400000)}
+            />
+            <ActivityItem
+              idea={ideas[0]}
+              change="up"
+              amount={1}
+              date={new Date(Date.now() - 172800000)}
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
