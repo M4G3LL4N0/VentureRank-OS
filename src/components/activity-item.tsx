@@ -4,9 +4,9 @@ import type { RankedIdea } from "@/lib/schema";
 
 type Props = {
   idea: RankedIdea;
-  change: "up" | "down";
-  amount: number;
-  date: Date;
+  change?: "up" | "down";
+  amount?: number;
+  date?: Date;
 };
 
 export function ActivityItem({ idea, change, amount, date }: Props) {
@@ -22,7 +22,7 @@ export function ActivityItem({ idea, change, amount, date }: Props) {
       <div className="flex-1">
         <div className="flex items-center gap-2 text-sm text-neutral-400">
           <ClockIcon className="h-4 w-4" />
-          <span>{format(date, "MMM d, yyyy")}</span>
+          <span>{date ? format(date, "MMM d, yyyy") : 'Unknown date'}</span>
         </div>
         <h3 className="mt-1 font-medium text-white">{idea.title}</h3>
         <p className="mt-1 text-sm text-neutral-400">
@@ -30,7 +30,7 @@ export function ActivityItem({ idea, change, amount, date }: Props) {
         </p>
       </div>
       <div className="text-sm font-medium text-white">
-        #{idea.masterRankScore.toFixed(0)}
+        #{idea?.masterRankScore?.toFixed(0) ?? 'N/A'}
       </div>
     </div>
   );
