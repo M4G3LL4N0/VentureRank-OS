@@ -1,11 +1,18 @@
-import { ideas } from "@/lib/mock-data";
 import { KpiCard } from "@/components/kpi-card";
 import { IdeaCard } from "@/components/idea-card";
 import { ActivityItem } from "@/components/activity-item";
+import { fetchIdeas } from "@/lib/data";
 
 export const dynamic = 'force-dynamic';
 
-export default function DashboardPage() {
+const activityDates = [
+  new Date("2026-05-06T12:00:00.000Z"),
+  new Date("2026-05-05T12:00:00.000Z"),
+  new Date("2026-05-04T12:00:00.000Z"),
+];
+
+export default async function DashboardPage() {
+  const ideas = await fetchIdeas();
   const top = ideas[0];
   const second = ideas[1];
   const buildFirst = ideas.filter((i) => i.bucket === "BUILD FIRST").length;
@@ -13,6 +20,10 @@ export default function DashboardPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <p className="mb-6 rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm leading-relaxed text-cyan-100/90">
+        Demo portfolio data for local review — scores prioritize ideas for planning, not
+        investment advice or verified market traction.
+      </p>
       <div className="max-w-3xl">
         <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">
           Dashboard
@@ -65,19 +76,19 @@ export default function DashboardPage() {
               idea={ideas[1]}
               change="up"
               amount={2}
-              date={new Date()}
+              date={activityDates[0]}
             />
             <ActivityItem
               idea={ideas[3]}
               change="down"
               amount={1}
-              date={new Date(Date.now() - 86400000)}
+              date={activityDates[1]}
             />
             <ActivityItem
               idea={ideas[0]}
               change="up"
               amount={1}
-              date={new Date(Date.now() - 172800000)}
+              date={activityDates[2]}
             />
           </div>
         </div>

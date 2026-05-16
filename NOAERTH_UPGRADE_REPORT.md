@@ -20,3 +20,19 @@ cd /Users/joshuadavis/startups/venturerank-os && pnpm dev
 
 ## Next
 Mark ranking scores as demo in UI
+
+---
+# NOAERTH Upgrade Report — VentureRank OS
+
+**Apex pass:** 2026-05-16
+
+## Summary
+Dashboard demo disclaimer banner
+
+## Local review
+See LOCAL_REVIEW.md
+
+## Build
+Run `pnpm build` after pull.
+
+**No deployment.**

@@ -97,6 +97,16 @@ Based on https://venturerank-os.noaerth.com:
 - Tests run: `pnpm build` only
 - Local review: `pnpm dev` → /
 
+
+### Loop Entry: 2026-05-16 (Apex)
+- Primary mode: MODE J
+- Loop type: LOOP 16
+- Changes made: Dashboard demo disclaimer banner
+- Files changed: src/app/dashboard/page.tsx
+- Build result: PASS (verify this loop)
+- Tests run: `pnpm build`
+- Local review: see LOCAL_REVIEW.md
+
 ## 13. Next Loop Plan
 - Highest leverage next move: Mark ranking scores as demo in UI
 - Suggested next command: `cd /Users/joshuadavis/startups/venturerank-os && pnpm dev`
@@ -105,3 +115,8 @@ Based on https://venturerank-os.noaerth.com:
 - Product: Mark ranking scores as demo in UI
 - Trust and safety: Keep disclaimers visible
 - Knowledge base: Keep startupjourney.md updated each loop
+
+## 11. Risk Register
+- **Unsupported live metrics:** Likelihood: medium | Impact: high | Evidence: marketing copy | Mitigation: demo labels + disclaimers | Review: each loop
+- **Regulated domain framing:** Likelihood: low–medium | Impact: high | Evidence: product category | Mitigation:  | Review: before public launch
+- **Git remote confusion:** Likelihood: medium | Impact: medium | Evidence: prior pushes to wrong repo | Mitigation: scoped commits only | Review: before push
