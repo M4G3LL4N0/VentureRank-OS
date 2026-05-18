@@ -1,11 +1,9 @@
 import Link from "next/link";
+import { SubpageVisual } from "@/components/SubpageVisual";
 import { fetchIdeas } from "@/lib/data";
 
-import { Suspense } from "react";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-
 export default async function PortfolioPage() {
-  const ideas = await fetchIdeas() || [];
+  const ideas = await fetchIdeas();
   
   // Ensure idea.bucket is always defined and matches expected types
   type IdeaBucket = 'BUILD FIRST' | 'HIGH PRIORITY' | 'BACKLOG' | 'IGNORE / MERGE';
@@ -39,6 +37,7 @@ export default async function PortfolioPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
+      <SubpageVisual variant="default" />
       <div className="max-w-3xl">
         <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">
           Portfolio

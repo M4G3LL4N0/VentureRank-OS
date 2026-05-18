@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS venturerank_os.ideas (
 );
 
 -- Add indexes for common filters
-CREATE INDEX idx_ideas_bucket ON venturerank_os.ideas(bucket);
-CREATE INDEX idx_ideas_category ON venturerank_os.ideas(category);
+CREATE INDEX IF NOT EXISTS idx_ideas_bucket ON venturerank_os.ideas(bucket);
+CREATE INDEX IF NOT EXISTS idx_ideas_category ON venturerank_os.ideas(category);
 
 -- Drop existing trigger and function if they exist
 DROP TRIGGER IF EXISTS update_ideas_timestamp ON venturerank_os.ideas;
@@ -68,5 +68,5 @@ DROP POLICY IF EXISTS ideas_select_policy ON venturerank_os.ideas;
 -- Create read policy for authenticated users
 CREATE POLICY ideas_select_policy ON venturerank_os.ideas
 FOR SELECT
-TO public.authenticated
+TO authenticated
 USING (true);

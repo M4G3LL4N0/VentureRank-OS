@@ -1,3 +1,4 @@
+import { SubpageVisual } from "@/components/SubpageVisual";
 export default function AdminIntakePage() {
   const fields = [
     "Title",
@@ -26,6 +27,7 @@ export default function AdminIntakePage() {
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
+      <SubpageVisual variant="default" />
       <div className="max-w-3xl">
         <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">
           Admin

@@ -1,4 +1,5 @@
 import { KpiCard } from "@/components/kpi-card";
+import { SubpageVisual } from "@/components/SubpageVisual";
 import { IdeaCard } from "@/components/idea-card";
 import { ActivityItem } from "@/components/activity-item";
 import { fetchIdeas } from "@/lib/data";
@@ -20,6 +21,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <SubpageVisual variant="dashboard" />
       <p className="mb-6 rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm leading-relaxed text-cyan-100/90">
         Demo portfolio data for local review — scores prioritize ideas for planning, not
         investment advice or verified market traction.

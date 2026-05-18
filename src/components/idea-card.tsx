@@ -6,7 +6,7 @@ export function IdeaCard({ idea }: { idea: RankedIdea }) {
   return (
     <Link
       href={`/ideas/${idea.slug}`}
-      className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:border-cyan-400/30 hover:bg-white/[0.07] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.05)] hover:scale-[1.02] active:scale-95"
+      className="group rounded-[1.35rem] border border-white/10 bg-white/[0.06] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.42)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/35 hover:bg-white/[0.08] hover:shadow-[0_28px_90px_rgba(0,0,0,0.55),0_0_40px_rgba(34,211,238,0.08)]"
     >
       <div className="flex items-start justify-between gap-4">
         <div>

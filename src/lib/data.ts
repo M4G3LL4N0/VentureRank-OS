@@ -4,6 +4,30 @@ import { RankedIdeaView, VentureIdeaRow, SpawnPack } from "@/lib/phase3-types";
 import { getSupabaseClient } from "@/lib/supabase";
 
 type IdeaBucket = RankedIdeaView["bucket"];
+type SupabaseError = { message: string };
+type SupabaseListResult = { data: unknown[] | null; error: SupabaseError | null };
+type SupabaseSingleResult = { data: unknown | null; error: SupabaseError | null };
+type SupabaseQuery = {
+  select(columns: string): SupabaseQuery;
+  order(column: string, options?: { ascending?: boolean }): SupabaseQuery;
+  eq(column: string, value: unknown): SupabaseQuery;
+  maybeSingle(): PromiseLike<SupabaseSingleResult>;
+  then<TResult1 = SupabaseListResult, TResult2 = never>(
+    onfulfilled?: ((value: SupabaseListResult) => TResult1 | PromiseLike<TResult1>) | null,
+    onrejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null
+  ): PromiseLike<TResult1 | TResult2>;
+};
+type SchemaScopedClient = {
+  schema(schemaName: string): {
+    from(tableName: string): SupabaseQuery;
+  };
+};
+
+function schemaTable(supabase: NonNullable<ReturnType<typeof getSupabaseClient>>, tableName: string) {
+  return (supabase as unknown as SchemaScopedClient)
+    .schema("venturerank_os")
+    .from(tableName);
+}
 
 export async function fetchIdeas(opts?: { status?: IdeaBucket }): Promise<RankedIdeaView[]> {
   const supabase = getSupabaseClient();
@@ -16,7 +40,7 @@ export async function fetchIdeas(opts?: { status?: IdeaBucket }): Promise<Ranked
     return fallback;
   }
 
-  let query = ((supabase as any).schema("venturerank_os").from("ideas") as any)
+  let query = schemaTable(supabase, "ideas")
     .select("*")
     .order("created_at", { ascending: false });
 
@@ -48,9 +72,7 @@ export async function fetchIdeaBySlug(slug: string): Promise<RankedIdeaView | nu
     return mockIdeas.find((idea) => idea.slug === slug) ?? null;
   }
 
-  const { data, error } = await ((supabase as any)
-    .schema("venturerank_os")
-    .from("ideas") as any)
+  const { data, error } = await schemaTable(supabase, "ideas")
     .select("*")
     .eq("slug", slug)
     .maybeSingle();

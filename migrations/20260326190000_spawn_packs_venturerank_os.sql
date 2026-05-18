@@ -1,7 +1,7 @@
 begin;
 
 create table if not exists venturerank_os.spawn_packs (
-  id uuid primary key default gen_random_uuid(),
+  id uuid primary key default public.gen_random_uuid(),
   idea_id uuid not null references venturerank_os.ideas(id) on delete cascade,
   product_thesis text not null,
   icp jsonb not null default '[]'::jsonb,

@@ -1,6 +1,18 @@
 import { getSupabaseClient } from "./supabase";
 import { SpawnPack } from "./phase3-types";
 
+type SupabaseError = { message: string };
+type SupabaseSingleResult = { data: unknown | null; error: SupabaseError | null };
+type SupabaseMutation = {
+  upsert(payload: unknown, options?: { onConflict?: string }): SupabaseMutation;
+  select(columns?: string): SupabaseMutation;
+  maybeSingle(): PromiseLike<SupabaseSingleResult>;
+};
+type SchemaScopedClient = {
+  schema(schemaName: string): {
+    from(tableName: string): SupabaseMutation;
+  };
+};
 type SpawnPackRow = {
   idea_id: string;
   product_thesis: string;
@@ -32,9 +44,9 @@ export async function persistSpawnPack(ideaId: string, spawnPack: SpawnPack) {
 
   const payload = toSpawnPackRow(ideaId, spawnPack);
 
-  const { data, error } = await (((supabase as any)
+  const { data, error } = await (supabase as unknown as SchemaScopedClient)
     .schema("venturerank_os")
-    .from("spawn_packs")) as any)
+    .from("spawn_packs")
     .upsert(payload, { onConflict: "idea_id" })
     .select()
     .maybeSingle();

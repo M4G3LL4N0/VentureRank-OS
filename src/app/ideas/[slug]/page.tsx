@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
-import { ideas } from "@/lib/mock-data";
+import { SubpageVisual } from "@/components/SubpageVisual";
+import { buildSpawnPack, fetchIdeaBySlug, fetchIdeas } from "@/lib/data";
+import { RankedIdeaView } from "@/lib/phase3-types";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -23,47 +25,14 @@ const metricLabels: Record<string, string> = {
   expansionSurface: "Expansion Surface",
 };
 
-function buildSpawnPack(idea: (typeof ideas)[number]) {
-  return {
-    productThesis: `${idea.title} is an AI-powered ${idea.category.toLowerCase()} platform that transforms fragmented knowledge into ranked, structured venture opportunities with clear execution paths and investor-grade scoring.`,
-    icp: [
-      "Seed-stage founders evaluating what to build next",
-      "Emerging venture studios prioritizing their pipelines",
-      "Angel investors and micro-funds sourcing deal flow",
-      "Operators building repeatable venture frameworks",
-    ],
-    mvpFeatures: [
-      "AI-powered idea intake and structured scoring",
-      "Investor-grade opportunity ranking system",
-      "Confidence-adjusted prioritization engine",
-      "Automated spawn pack generation",
-      "Portfolio-level execution tracking",
-    ],
-    monetizationStrategy: [
-      "Founder subscription plans ($99/mo)",
-      "Venture studio workspace pricing ($499/mo)",
-      "Premium AI-generated venture packs ($299/pack)",
-      "Enterprise API access ($999/mo)",
-    ],
-    gtmStrategy: [
-      "Launch as internal venture studio OS",
-      "Publish ranked opportunities to attract builders",
-      "Convert traffic through premium scoring workflows",
-      "Expand into full-stack venture operations",
-    ],
-    expansionRoadmap: [
-      "Add portfolio management tools",
-      "Integrate deal flow pipelines",
-      "Launch API for rankings and scoring",
-      "Add collaborative workspace features",
-      "Expand into full venture studio operations",
-    ],
-  };
+export async function generateStaticParams() {
+  const ideas = await fetchIdeas();
+  return ideas.map((idea) => ({ slug: idea.slug }));
 }
 
 export default async function IdeaDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const idea = ideas.find((item) => item.slug === slug);
+  const idea = await fetchIdeaBySlug(slug);
 
   if (!idea) return notFound();
 
@@ -71,7 +40,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
     .map(([key, label]) => ({
       key,
       label,
-      value: idea[key as keyof typeof idea],
+      value: idea[key as keyof RankedIdeaView],
     }))
     .filter(metric => typeof metric.value === 'number');
 
@@ -79,6 +48,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-16">
+      <SubpageVisual variant="default" />
       <div className="max-w-4xl">
         <div className="text-sm uppercase tracking-[0.2em] text-cyan-300/80">
           {idea.category}
