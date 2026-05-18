@@ -1,0 +1,47 @@
+{
+  "startup_name": "VentureRank OS",
+  "current_build_status": {
+    "pnpm_install": "pass",
+    "pnpm_lint": "pass",
+    "pnpm_typecheck": "pass",
+    "pnpm_build": "pass",
+    "runtime_smoke_test": "pass"
+  },
+  "deploy_readiness": {
+    "status": "ready_for_manual_vercel_prod",
+    "manual_command": "cd /Users/joshuadavis/startups/venturerank-os && pnpm install && pnpm build && vercel --prod",
+    "do_not_auto_deploy": true
+  },
+  "recent_changes": [
+    "removed accidental root app/api/checkout route that shadowed src/app",
+    "removed accidental root lib/supabase placeholder client",
+    "moved core pages to shared fetchIdeas/fetchIdeaBySlug data layer",
+    "kept Supabase lazy and optional with mock fallback",
+    "added typecheck script",
+    "fixed lint and React compiler purity issues",
+    "hardened migrations for venturerank_os schema and authenticated RLS reads",
+    "validated required routes and APIs with HTTP 200 smoke test",
+    "added foundation files and .env.example",
+    "cleaned generated disk artifacts after green build",
+    "re-validated pnpm typecheck/build as green on 2026-05-11 and removed node_modules/.next for disk savings"
+  ],
+  "open_issues": [
+    "Supabase database types should be generated instead of local adapter casts",
+    "admin intake is mock-only and does not persist yet",
+    "spawn packs are generated but API does not persist them yet",
+    "AI scoring endpoint is not implemented",
+    "filtering and sorting controls are not yet interactive",
+    "no multi-tenant workspace model yet",
+    "Open Graph image path is declared but no real og-image asset is present"
+  ],
+  "next_actions": [
+    "generate Supabase DB types for venturerank_os",
+    "persist admin intake to venturerank_os.ideas",
+    "persist spawn packs to venturerank_os.spawn_packs",
+    "add AI scoring endpoint",
+    "add filtering and sorting",
+    "add workspace and multi-tenant support later",
+    "improve SEO/demo copy",
+    "add export/share functionality"
+  ]
+}

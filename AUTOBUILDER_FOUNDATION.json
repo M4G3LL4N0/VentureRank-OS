@@ -1,0 +1,157 @@
+{
+  "project_folder": "venturerank-os",
+  "startup_name": "VentureRank OS",
+  "schema_name": "venturerank_os",
+  "category": "venture studio operating system",
+  "one_line_description": "VentureRank OS is a venture studio operating system that ranks startup ideas, scores them by strategic criteria, groups them into priority buckets, and generates spawn packs for the highest-value opportunities.",
+  "target_users": [
+    "founders deciding what to build first",
+    "venture studios prioritizing startup queues",
+    "operators turning opportunity analysis into execution",
+    "micro-funds and angels comparing early venture theses"
+  ],
+  "core_problem": "Startup builders lose time and conviction when ideas are not scored, ranked, compared, or translated into concrete execution packs.",
+  "core_solution": "A founder-grade operating system that normalizes startup ideas into weighted scores, priority buckets, confidence-adjusted rankings, portfolio queues, and spawn packs.",
+  "mvp_scope": [
+    "homepage positioning",
+    "founder dashboard",
+    "idea index",
+    "idea detail with scoring and spawn pack preview",
+    "rankings table",
+    "portfolio queue",
+    "internal intake form",
+    "ideas, rankings, and spawn APIs",
+    "mock fallback with optional Supabase reads"
+  ],
+  "website_routes": [
+    "/",
+    "/dashboard",
+    "/ideas",
+    "/ideas/[slug]",
+    "/rankings",
+    "/portfolio",
+    "/admin/intake",
+    "/api/ideas",
+    "/api/rankings",
+    "/api/spawn"
+  ],
+  "product_flows": [
+    "founder opens dashboard and reviews top conviction ideas",
+    "founder compares all ideas by bucket and confidence-adjusted score",
+    "founder opens an idea detail page to inspect metrics, rationale, risks, and recommended action",
+    "founder generates or previews a spawn pack for a high-priority idea",
+    "operator intakes a new idea for later persistence and scoring"
+  ],
+  "design_system": {
+    "theme": "dark premium founder-grade venture studio OS",
+    "accent": "cyan/blue",
+    "layout": "clean dashboard cards, ranked tables, queue columns, sharp hierarchy",
+    "avoid": "generic SaaS fluff, overcomplicated animation, Autobuilder public language"
+  },
+  "technical_stack": {
+    "framework": "Next.js App Router",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "icons": "lucide-react",
+    "database": "Supabase project core-prod, schema venturerank_os",
+    "package_manager": "pnpm",
+    "deployment": "manual Vercel production deploy"
+  },
+  "important_files": [
+    "src/app/page.tsx",
+    "src/app/dashboard/page.tsx",
+    "src/app/ideas/page.tsx",
+    "src/app/ideas/[slug]/page.tsx",
+    "src/app/rankings/page.tsx",
+    "src/app/portfolio/page.tsx",
+    "src/app/admin/intake/page.tsx",
+    "src/app/api/ideas/route.ts",
+    "src/app/api/rankings/route.ts",
+    "src/app/api/spawn/route.ts",
+    "src/lib/data.ts",
+    "src/lib/supabase.ts",
+    "src/lib/scoring.ts",
+    "src/lib/mock-data.ts",
+    "migrations/20260322150000_init_venturerank_os.sql",
+    "migrations/20260326190000_spawn_packs_venturerank_os.sql",
+    "RECOVERY_NOTES.md",
+    "AUTOBUILDER_FOUNDATION.json",
+    ".autobuilder/project-state.json",
+    ".autobuilder/next-actions.json",
+    ".autobuilder/guardrails.md"
+  ],
+  "preserve_rules": [
+    "preserve all current product routes",
+    "preserve mock data fallback",
+    "preserve scoring formulas and decision buckets",
+    "preserve pnpm-lock.yaml",
+    "preserve .env.local and .env.example",
+    "preserve migrations and source files",
+    "preserve public assets that are used"
+  ],
+  "do_not_rules": [
+    "do not use npm",
+    "do not deploy to Vercel automatically",
+    "do not push to GitHub automatically",
+    "do not require Supabase env vars at build time",
+    "do not create app-owned tables in public schema",
+    "do not expose Autobuilder language publicly",
+    "do not turn this into a generic SaaS dashboard"
+  ],
+  "autobuilder_strategy": {
+    "current_stage": "mvp",
+    "current_decision": "repair/build",
+    "active_roles": [
+      "QA Release Manager",
+      "Staff Engineer",
+      "Product Designer",
+      "DevOps",
+      "Product Strategist"
+    ],
+    "highest_leverage_next_move": "persist intake and spawn packs to Supabase using generated venturerank_os database types"
+  },
+  "cleanup_policy": {
+    "safe_to_delete": [
+      "node_modules",
+      ".next",
+      ".turbo",
+      ".vercel/cache",
+      "dist",
+      "build",
+      "coverage",
+      "playwright-report",
+      "test-results",
+      ".cache",
+      ".parcel-cache",
+      "*.log",
+      ".DS_Store",
+      "empty folders"
+    ],
+    "never_delete": [
+      "src",
+      "app source under src/app",
+      "components",
+      "lib source under src/lib",
+      "public assets that are used",
+      "migrations",
+      "package.json",
+      "pnpm-lock.yaml",
+      "tsconfig.json",
+      "next config",
+      "tailwind/postcss config",
+      ".env.local",
+      ".env.example",
+      "RECOVERY_NOTES.md",
+      "AUTOBUILDER_FOUNDATION.json",
+      ".autobuilder",
+      ".gitignore",
+      "README.md"
+    ]
+  },
+  "last_recovery_summary": {
+    "date": "2026-05-06",
+    "build_status": "green",
+    "deploy_readiness": "ready for manual Vercel deploy after fresh pnpm install/build",
+    "summary": "Fixed root app shadowing, restored real product route build, kept Supabase lazy with mock fallback, cleaned lint/typecheck issues, hardened migrations, validated required routes, and prepared foundation memory files."
+  }
+}

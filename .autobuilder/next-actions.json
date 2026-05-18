@@ -1,0 +1,50 @@
+[
+  {
+    "priority": 1,
+    "task": "Fix remaining Supabase typing cleanly with generated DB types",
+    "why": "Replace adapter casts with source-of-truth venturerank_os schema types.",
+    "status": "pending"
+  },
+  {
+    "priority": 2,
+    "task": "Persist admin intake to Supabase",
+    "why": "Turn the intake form from mock UI into a real venture ingestion flow.",
+    "status": "pending"
+  },
+  {
+    "priority": 3,
+    "task": "Persist spawn packs",
+    "why": "Make generated execution packs durable and reusable.",
+    "status": "pending"
+  },
+  {
+    "priority": 4,
+    "task": "Add AI scoring endpoint",
+    "why": "Enable structured scoring assistance for new ideas without exposing server credentials.",
+    "status": "pending"
+  },
+  {
+    "priority": 5,
+    "task": "Add filtering and sorting",
+    "why": "Improve founder workflow across ideas, rankings, and portfolio queue views.",
+    "status": "pending"
+  },
+  {
+    "priority": 6,
+    "task": "Add workspace/multi-tenant support later",
+    "why": "Prepare the OS for multiple studios or founder teams after single-workspace MVP is proven.",
+    "status": "pending"
+  },
+  {
+    "priority": 7,
+    "task": "Improve SEO/demo copy",
+    "why": "Sharpen public positioning and make the product easier to understand in a demo.",
+    "status": "pending"
+  },
+  {
+    "priority": 8,
+    "task": "Add export/share functionality",
+    "why": "Let founders package rankings and spawn packs for collaborators, investors, or execution teams.",
+    "status": "pending"
+  }
+]

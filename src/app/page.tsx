@@ -58,6 +58,12 @@ export default async function HomePage() {
               Open dashboard
             </Link>
             <Link
+              href="/demo"
+              className="inline-flex items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-7 py-3 text-sm font-semibold text-cyan-100 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-400/15"
+            >
+              Try scoring demo
+            </Link>
+            <Link
               href="/rankings"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-7 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
