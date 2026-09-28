@@ -74,19 +74,19 @@ export default async function HomePage() {
 
         <div className="relative mt-14 grid gap-4 sm:mt-16 md:grid-cols-3">
           <KpiCard
-            label="Ideas scored"
+            label="Ideas in this set"
             value={String(ideas.length)}
-            subtext="Structured opportunities actively ranked"
+            subtext="Local ranked opportunities, not market share"
           />
           <KpiCard
             label="Build first"
             value={String(buildFirst)}
-            subtext="Immediate build candidates"
+            subtext="Highest-priority bucket in this queue"
           />
           <KpiCard
             label="Average adjusted score"
             value={avgScore}
-            subtext="Confidence-adjusted startup quality"
+            subtext="Confidence-adjusted score across this set"
           />
         </div>
       </section>
@@ -98,7 +98,7 @@ export default async function HomePage() {
               Top opportunities
             </div>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              Highest-ranked startups right now
+              Highest-ranked ideas in the current queue
             </h2>
           </div>
           <div className="inline-flex w-fit items-center rounded-full border border-white/12 bg-white/[0.06] px-4 py-2 text-xs text-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-md sm:text-sm">
